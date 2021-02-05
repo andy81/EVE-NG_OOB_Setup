@@ -1,0 +1,18 @@
+
+hostname MGMT-NET
+
+no ip domain-lookup
+
+interface GigabitEthernet0/0
+ description HOME NET
+ no switchport
+ ip address 172.24.1.100 255.255.255.0
+
+interface Vlan1
+ description LAB_MGMT
+ ip address 192.168.100.1 255.255.255.0
+
+no ip http server
+
+ip route 0.0.0.0 0.0.0.0 {{local network gateway IP}}
+

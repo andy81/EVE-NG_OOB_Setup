@@ -1,0 +1,25 @@
+
+hostname {{hostname}}
+
+ip domain-name lab.local
+
+username {{username}} privilege 15 pass {{password}}
+
+ip ssh ver 2
+crypto key gen rsa mod 1024
+
+no ip http server
+
+line vty 0 4
+transport input all
+
+vrf definition MGMT
+address-family ipv4
+
+int gi0/0
+des LAB_MGMT
+vrf forwarding MGMT
+ip address 192.168.100.{{ip_addr}} 255.255.255.0
+no shut
+
+ip route vrf MGMT 0.0.0.0 0.0.0.0 192.168.100.1

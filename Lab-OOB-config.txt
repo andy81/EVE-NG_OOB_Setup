@@ -1,6 +1,7 @@
 
 hostname {{hostname}}
 
+no ip domain-lookup
 ip domain-name lab.local
 
 username {{username}} privilege 15 pass {{password}}
@@ -10,7 +11,12 @@ crypto key gen rsa mod 1024
 
 no ip http server
 
+line con 0
+logg sync
+
 line vty 0 4
+logg sync
+login local
 transport input all
 
 vrf definition MGMT
